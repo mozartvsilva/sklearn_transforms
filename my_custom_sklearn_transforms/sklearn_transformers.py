@@ -46,9 +46,11 @@ class MultiColumnLabelEncoder:
         output = X.copy()
         if self.columns is not None:
             for col in self.columns:
+                output[col].fillna('NA', inplace=True)
                 output[col] = LabelEncoder().fit_transform(output[col])
         else:
             for colname,col in output.iteritems():
+                output[colname].fillna('NA', inplace=True)
                 output[colname] = LabelEncoder().fit_transform(col)
         return output
 
